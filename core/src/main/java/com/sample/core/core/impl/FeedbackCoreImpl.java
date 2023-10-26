@@ -1,5 +1,6 @@
 package com.sample.core.core.impl;
 
+import com.sample.common.model.request.GetFeedbacksByBikerRequest;
 import com.sample.common.model.request.GetFeedbacksByDateRequest;
 import com.sample.common.model.request.SubmitFeedbackRequest;
 import com.sample.common.model.response.Feedback;
@@ -29,4 +30,12 @@ public class FeedbackCoreImpl implements FeedbackCore {
     public List<Feedback> getFeedbacksByDate(GetFeedbacksByDateRequest request) {
         return feedbackService.getFeedbacksByDate(request.getFrom(), request.getTo());
     }
+
+    @Override
+    public List<Feedback> getFeedbacksByBiker(GetFeedbacksByBikerRequest request) {
+        Long bikerId = cryptor.decrypt(request.getBikerId());
+        return feedbackService.getFeedbacksByBiker(bikerId);
+    }
+
+
 }

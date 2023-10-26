@@ -2,6 +2,7 @@ package com.sample.controller.dto.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -13,7 +14,7 @@ public class SubmitFeedbackRequestDTO {
     @Schema(description = "given feedback to delivery")
     private FeedbackDTO feedback;
 
-    @NotNull
+    @NotBlank
     @Schema(description = "ID of Delivery")
     private String deliveryId;
 

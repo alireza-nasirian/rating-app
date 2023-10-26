@@ -9,4 +9,6 @@ import java.util.List;
 public interface FeedbackDAO extends JpaRepository<FeedbackEntity, Long> {
 
     List<FeedbackEntity> findByFeedbackDateBetweenOrderByFeedbackDate(Date start, Date end);
+
+    List<FeedbackEntity> findFeedbackEntitiesByBiker_Id(Long id);
 }

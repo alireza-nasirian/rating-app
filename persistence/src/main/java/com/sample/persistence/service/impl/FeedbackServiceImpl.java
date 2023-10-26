@@ -36,4 +36,9 @@ public class FeedbackServiceImpl implements FeedbackService {
     public List<com.sample.common.model.response.Feedback> getFeedbacksByDate(Date from, Date to) {
         return mapper.fromFeedbackEntityList(feedbackDAO.findByFeedbackDateBetweenOrderByFeedbackDate(from, to));
     }
+
+    @Override
+    public List<com.sample.common.model.response.Feedback> getFeedbacksByBiker(Long bikerId) {
+        return mapper.fromFeedbackEntityList(feedbackDAO.findFeedbackEntitiesByBiker_Id(bikerId));
+    }
 }

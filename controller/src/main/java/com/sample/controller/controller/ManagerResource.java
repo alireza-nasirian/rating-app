@@ -1,6 +1,8 @@
 package com.sample.controller.controller;
 
+import com.sample.controller.dto.request.GetFeedbacksByBikerRequestDTO;
 import com.sample.controller.dto.request.GetFeedbacksByDateRequestDTO;
+import com.sample.controller.dto.response.GetFeedbacksByBikerResponseDTO;
 import com.sample.controller.dto.response.GetFeedbacksByDateResponseDTO;
 import com.sample.controller.service.ManagerService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -24,7 +26,7 @@ public class ManagerResource {
 
     private final ManagerService managerService;
 
-    @Operation(summary = "Submit a feedback with delivery ID", responses = {
+    @Operation(summary = "Get feedback between given dates sorted by feedback date", responses = {
             @ApiResponse(responseCode = "200", description = "OK", content =
             @Content(schema = @Schema(implementation = GetFeedbacksByDateResponseDTO.class)))
     })
@@ -33,5 +35,16 @@ public class ManagerResource {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public GetFeedbacksByDateResponseDTO getFeedbacksByDate(@Valid @RequestBody GetFeedbacksByDateRequestDTO request) {
       return managerService.getFeedbacksByDate(request);
+    }
+
+    @Operation(summary = "Get feedbacks associated to given biker", responses = {
+            @ApiResponse(responseCode = "200", description = "OK", content =
+            @Content(schema = @Schema(implementation = GetFeedbacksByBikerResponseDTO.class)))
+    })
+    @PostMapping(value = {"/feedback/get-by-biker"},
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public GetFeedbacksByBikerResponseDTO getFeedbackByBiker(@Valid @RequestBody GetFeedbacksByBikerRequestDTO request) {
+        return managerService.getFeedbacksByBiker(request);
     }
 }

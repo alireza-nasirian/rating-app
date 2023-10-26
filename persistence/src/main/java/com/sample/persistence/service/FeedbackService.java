@@ -11,4 +11,6 @@ public interface FeedbackService {
 
     List<com.sample.common.model.response.Feedback> getFeedbacksByDate(Date from, Date to);
 
+    List<com.sample.common.model.response.Feedback> getFeedbacksByBiker(Long bikerId);
+
 }
