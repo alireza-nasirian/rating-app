@@ -1,5 +1,6 @@
-package com.sample.controller.dto.general;
+package com.sample.controller.dto.request;
 
+import com.sample.controller.dto.general.RateDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;

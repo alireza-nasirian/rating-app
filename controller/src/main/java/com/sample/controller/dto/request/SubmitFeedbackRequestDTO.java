@@ -1,6 +1,5 @@
 package com.sample.controller.dto.request;
 
-import com.sample.controller.dto.general.FeedbackDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;

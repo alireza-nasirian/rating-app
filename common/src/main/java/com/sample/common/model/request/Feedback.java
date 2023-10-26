@@ -1,4 +1,4 @@
-package com.sample.common.model.general;
+package com.sample.common.model.request;
 
 import com.sample.common.model.enumeration.Rate;
 import lombok.Data;

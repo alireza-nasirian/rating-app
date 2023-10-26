@@ -1,6 +1,6 @@
 package com.sample.persistence.service.impl;
 
-import com.sample.common.model.general.Feedback;
+import com.sample.common.model.request.Feedback;
 import com.sample.persistence.converter.PersistenceMapper;
 import com.sample.persistence.dao.DeliveryDAO;
 import com.sample.persistence.dao.FeedbackDAO;
@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -29,5 +30,10 @@ public class FeedbackServiceImpl implements FeedbackService {
         entity.setBiker(delivery.getBiker());
         FeedbackEntity savedEntity = feedbackDAO.save(entity);
         return savedEntity.getId();
+    }
+
+    @Override
+    public List<com.sample.common.model.response.Feedback> getFeedbacksByDate(Date from, Date to) {
+        return mapper.fromFeedbackEntityList(feedbackDAO.findByFeedbackDateBetweenOrderByFeedbackDate(from, to));
     }
 }
