@@ -25,11 +25,11 @@ public class Delivery {
     @Lob
     private String destinationAddress;
 
-    @OneToOne
+    @ManyToOne
     @Column(nullable = false)
     private User customer;
 
-    @OneToOne
+    @ManyToOne
     @Column(nullable = false)
     private User biker;
 

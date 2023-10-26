@@ -29,6 +29,8 @@
         <java.version>17</java.version>
         <lombok.version>1.18.22</lombok.version>
         <mysql.connector.version>8.0.33</mysql.connector.version>
+        <swagger.annotations.version>2.1.5</swagger.annotations.version>
+        <springdoc.version>2.1.0</springdoc.version>
     </properties>
 
 	<dependencyManagement>
@@ -50,6 +52,16 @@
 				<artifactId>spring-security-test</artifactId>
 				<scope>test</scope>
 			</dependency>
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger.annotations.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
 		</dependencies>
 	</dependencyManagement>
 

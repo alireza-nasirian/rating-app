@@ -29,6 +29,4 @@ public class Feedback {
     @Column(nullable = false)
     @OneToOne
     private Delivery delivery;
-
-    //todo add cascade and fetch type
 }

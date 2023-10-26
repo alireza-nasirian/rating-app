@@ -1,6 +1,6 @@
-package com.sample.persistence.entity;
+package com.sample.controller.dto.general;
 
-public enum Rate {
+public enum RateDTO {
 
     FIVE_STAR(5),
     FOUR_STAR(4),
@@ -9,7 +9,7 @@ public enum Rate {
     ONE_STAR(1);
     private final Integer value;
 
-    Rate(Integer value) {
+    RateDTO(Integer value) {
         this.value = value;
     }
 }
