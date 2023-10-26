@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Entity
 @Data
-public class Delivery {
+public class DeliveryEntity {
 
     @Id
     @SequenceGenerator(name = "delivery_seq",
@@ -27,12 +27,12 @@ public class Delivery {
 
     @ManyToOne
     @Column(nullable = false)
-    private User customer;
+    private UserEntity customer;
 
     @ManyToOne
     @Column(nullable = false)
-    private User biker;
+    private BikerEntity biker;
 
     @OneToOne
-    private Feedback feedback;
+    private FeedbackEntity feedback;
 }

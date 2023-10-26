@@ -1,14 +1,11 @@
-package com.sample.persistence.entity;
+package com.sample.common.model.general;
 
-import jakarta.persistence.Entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Entity
-@Data
 @EqualsAndHashCode(callSuper = true)
+@Data
 public class Biker extends User {
 
     private String vehicleId;
 }
-

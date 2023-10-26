@@ -8,7 +8,7 @@ import java.util.List;
 @Entity
 @Data
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class User {
+public class UserEntity {
 
     @Id
     @SequenceGenerator(name = "user_seq",
@@ -30,5 +30,5 @@ public class User {
     private String phoneNumber;
 
     @OneToMany
-    private List<Delivery> deliveries;
+    private List<DeliveryEntity> deliveries;
 }

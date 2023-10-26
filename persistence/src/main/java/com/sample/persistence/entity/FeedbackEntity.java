@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Entity
 @Data
-public class Feedback {
+public class FeedbackEntity {
 
     @Id
     @SequenceGenerator(name = "feedback_seq",
@@ -18,7 +18,7 @@ public class Feedback {
 
     @Enumerated
     @Column(nullable = false)
-    private Rate rate;
+    private RateEntity rate;
 
     @Lob
     private String comment;
@@ -28,5 +28,8 @@ public class Feedback {
 
     @Column(nullable = false)
     @OneToOne
-    private Delivery delivery;
+    private DeliveryEntity delivery;
+
+    @ManyToOne
+    private BikerEntity biker;
 }
