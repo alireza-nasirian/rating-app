@@ -1,5 +1,6 @@
 package com.sample.persistence.service.impl;
 
+import com.sample.common.model.enumeration.Rate;
 import com.sample.common.model.request.Feedback;
 import com.sample.persistence.converter.PersistenceMapper;
 import com.sample.persistence.dao.DeliveryDAO;
@@ -41,4 +42,11 @@ public class FeedbackServiceImpl implements FeedbackService {
     public List<com.sample.common.model.response.Feedback> getFeedbacksByBiker(Long bikerId) {
         return mapper.fromFeedbackEntityList(feedbackDAO.findFeedbackEntitiesByBiker_Id(bikerId));
     }
+
+    @Override
+    public List<com.sample.common.model.response.Feedback> getFeedbacksByRate(Rate rate) {
+        return mapper.fromFeedbackEntityList(feedbackDAO.findFeedbackEntitiesByRate(mapper.toRateEntity(rate)));
+    }
+
+
 }

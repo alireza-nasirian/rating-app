@@ -1,5 +1,6 @@
 package com.sample.persistence.service;
 
+import com.sample.common.model.enumeration.Rate;
 import com.sample.common.model.request.Feedback;
 
 import java.util.Date;
@@ -12,5 +13,7 @@ public interface FeedbackService {
     List<com.sample.common.model.response.Feedback> getFeedbacksByDate(Date from, Date to);
 
     List<com.sample.common.model.response.Feedback> getFeedbacksByBiker(Long bikerId);
+
+    List<com.sample.common.model.response.Feedback> getFeedbacksByRate(Rate rate);
 
 }

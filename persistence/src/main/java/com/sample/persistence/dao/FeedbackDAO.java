@@ -1,6 +1,7 @@
 package com.sample.persistence.dao;
 
 import com.sample.persistence.entity.FeedbackEntity;
+import com.sample.persistence.entity.RateEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Date;
@@ -11,4 +12,6 @@ public interface FeedbackDAO extends JpaRepository<FeedbackEntity, Long> {
     List<FeedbackEntity> findByFeedbackDateBetweenOrderByFeedbackDate(Date start, Date end);
 
     List<FeedbackEntity> findFeedbackEntitiesByBiker_Id(Long id);
+
+    List<FeedbackEntity> findFeedbackEntitiesByRate(RateEntity rate);
 }
