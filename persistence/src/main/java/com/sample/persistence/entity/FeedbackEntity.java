@@ -1,19 +1,23 @@
 package com.sample.persistence.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 
 @Entity
-@Data
+@NoArgsConstructor
+@Getter
+@Setter
 public class FeedbackEntity {
 
     @Id
     @SequenceGenerator(name = "feedback_seq",
             sequenceName = "feedback_sequence",allocationSize = 20)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "feedback_seq")
-    @Column(nullable = false)
     private Long id;
 
     @Enumerated
@@ -26,10 +30,10 @@ public class FeedbackEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Date feedbackDate;
 
-    @JoinColumn(nullable = false)
-    @OneToOne
+    @NotNull
+    @OneToOne(mappedBy = "feedback", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private DeliveryEntity delivery;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private BikerEntity biker;
 }

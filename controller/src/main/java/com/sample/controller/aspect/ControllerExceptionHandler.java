@@ -8,6 +8,7 @@ import com.sample.controller.dto.exception.ErrorCodeDTO;
 import com.sample.controller.dto.exception.ExceptionInfoDTO;
 import com.sample.controller.dto.exception.ValidationExceptionInfoDTO;
 import com.sample.controller.util.Validator;
+import jakarta.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -33,6 +34,13 @@ public class ControllerExceptionHandler {
     @ResponseBody
     public ExceptionInfoDTO exception(BusinessException exception) {
         return new ExceptionInfoDTO(mapper.toErrorCodeDTO(exception.getErrorCode()), exception.getMessage());
+    }
+
+    @ExceptionHandler({ConstraintViolationException.class})
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public ExceptionInfoDTO exception(ConstraintViolationException exception) {
+        return new ExceptionInfoDTO(ErrorCodeDTO.INVALID_INPUT, exception.getMessage());
     }
 
     @ExceptionHandler({Throwable.class})

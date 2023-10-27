@@ -10,6 +10,7 @@ import com.sample.persistence.entity.FeedbackEntity;
 import com.sample.persistence.service.FeedbackService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -29,6 +30,7 @@ public class FeedbackServiceImpl implements FeedbackService {
         entity.setDelivery(delivery);
         entity.setFeedbackDate(new Date());
         entity.setBiker(delivery.getBiker());
+        delivery.setFeedback(entity);
         FeedbackEntity savedEntity = feedbackDAO.save(entity);
         return savedEntity.getId();
     }
@@ -46,6 +48,15 @@ public class FeedbackServiceImpl implements FeedbackService {
     @Override
     public List<com.sample.common.model.response.Feedback> getFeedbacksByRate(Rate rate) {
         return mapper.fromFeedbackEntityList(feedbackDAO.findFeedbackEntitiesByRate(mapper.toRateEntity(rate)));
+    }
+
+    @Override
+    @Transactional
+    public FeedbackEntity getFeedbackById(Long id) {
+        FeedbackEntity feedback = feedbackDAO.getReferenceById(id);
+        DeliveryEntity delivery = feedback.getDelivery();
+        System.out.println(delivery.getId());
+        return feedback;
     }
 
 

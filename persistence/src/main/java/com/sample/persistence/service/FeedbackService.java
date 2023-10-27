@@ -2,6 +2,7 @@ package com.sample.persistence.service;
 
 import com.sample.common.model.enumeration.Rate;
 import com.sample.common.model.request.Feedback;
+import com.sample.persistence.entity.FeedbackEntity;
 
 import java.util.Date;
 import java.util.List;
@@ -16,4 +17,5 @@ public interface FeedbackService {
 
     List<com.sample.common.model.response.Feedback> getFeedbacksByRate(Rate rate);
 
+    FeedbackEntity getFeedbackById(Long id);
 }

@@ -24,4 +24,6 @@ public interface PersistenceMapper {
     RateEntity toRateEntity(Rate rate);
 
     Biker fromBikerEntity(BikerEntity entity);
+
+    com.sample.common.model.response.Feedback fromFeedbackEntity(FeedbackEntity referenceById);
 }

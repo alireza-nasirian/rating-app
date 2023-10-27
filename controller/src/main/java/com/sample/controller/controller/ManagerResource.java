@@ -1,6 +1,5 @@
 package com.sample.controller.controller;
 
-import com.sample.controller.dto.request.GetFeedbacksByBikerRequestDTO;
 import com.sample.controller.dto.request.GetFeedbacksByDateRequestDTO;
 import com.sample.controller.dto.request.GetFeedbacksByRateRequestDTO;
 import com.sample.controller.dto.response.GetFeedbacksByBikerResponseDTO;
@@ -12,14 +11,14 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Validated
 @RequiredArgsConstructor
 @RequestMapping("/manager")
 public class ManagerResource {
@@ -41,11 +40,10 @@ public class ManagerResource {
             @ApiResponse(responseCode = "200", description = "OK", content =
             @Content(schema = @Schema(implementation = GetFeedbacksByBikerResponseDTO.class)))
     })
-    @PostMapping(value = {"/feedback/get-by-biker"},
-            consumes = MediaType.APPLICATION_JSON_VALUE,
+    @GetMapping(value = {"/feedback/get-by-biker"},
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public GetFeedbacksByBikerResponseDTO getFeedbackByBiker(@Valid @RequestBody GetFeedbacksByBikerRequestDTO request) {
-        return managerService.getFeedbacksByBiker(request);
+    public GetFeedbacksByBikerResponseDTO getFeedbackByBiker(@RequestParam(name = "bikerId") @NotBlank String bikerId) {
+        return managerService.getFeedbacksByBiker(bikerId);
     }
 
     @Operation(summary = "Get feedbacks associated to given rate", responses = {

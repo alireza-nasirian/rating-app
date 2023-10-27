@@ -1,11 +1,11 @@
 package com.sample.controller.service;
 
+import com.sample.common.model.request.GetFeedbacksByBikerRequest;
 import com.sample.common.model.response.Feedback;
 import com.sample.common.model.response.GetFeedbacksByBikerResponse;
 import com.sample.common.model.response.GetFeedbacksByDateResponse;
 import com.sample.common.model.response.GetFeedbacksByRateResponse;
 import com.sample.controller.converter.RequestResponseMapper;
-import com.sample.controller.dto.request.GetFeedbacksByBikerRequestDTO;
 import com.sample.controller.dto.request.GetFeedbacksByDateRequestDTO;
 import com.sample.controller.dto.request.GetFeedbacksByRateRequestDTO;
 import com.sample.controller.dto.response.GetFeedbacksByBikerResponseDTO;
@@ -31,9 +31,9 @@ public class ManagerService {
         return mapper.toGetFeedbacksByDateResponseDTO(response);
     }
 
-    public GetFeedbacksByBikerResponseDTO getFeedbacksByBiker(GetFeedbacksByBikerRequestDTO request) {
+    public GetFeedbacksByBikerResponseDTO getFeedbacksByBiker(String request) {
         GetFeedbacksByBikerResponse response = new GetFeedbacksByBikerResponse();
-        List<Feedback> feedbacks = feedbackCore.getFeedbacksByBiker(mapper.fromGetFeedbacksByBikerRequestDTO(request));
+        List<Feedback> feedbacks = feedbackCore.getFeedbacksByBiker(new GetFeedbacksByBikerRequest(request));
         response.setFeedbacks(feedbacks);
         return mapper.toGetFeedbacksByBikerResponseDTO(response);
     }

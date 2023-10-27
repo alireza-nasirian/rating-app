@@ -2,11 +2,16 @@ package com.sample.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity
-@Data
+@NoArgsConstructor
+@Getter
+@Setter
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class UserEntity {
 
@@ -17,10 +22,10 @@ public class UserEntity {
     @Column(nullable = false)
     private Long id;
 
-    @Column(length = 20)
+    @Column(length = 30)
     private String firstName;
 
-    @Column(length = 20)
+    @Column(length = 30)
     private String lastName;
 
     @Column(length = 10)
@@ -28,7 +33,4 @@ public class UserEntity {
 
     @Column(length = 11, nullable = false)
     private String phoneNumber;
-
-    @OneToMany
-    private List<DeliveryEntity> deliveries;
 }
