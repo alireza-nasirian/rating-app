@@ -12,7 +12,7 @@ import org.mapstruct.Mapper;
 
 import java.util.List;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface PersistenceMapper {
 
     Delivery fromDeliveryEntity(DeliveryEntity entity);

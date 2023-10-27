@@ -26,11 +26,11 @@ public class DeliveryEntity {
     private String destinationAddress;
 
     @ManyToOne
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
     private UserEntity customer;
 
     @ManyToOne
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
     private BikerEntity biker;
 
     @OneToOne

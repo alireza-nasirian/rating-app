@@ -16,7 +16,7 @@ import com.sample.controller.dto.response.GetFeedbacksByDateResponseDTO;
 import com.sample.controller.dto.response.GetFeedbacksByRateResponseDTO;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface RequestResponseMapper {
 
     SubmitFeedbackRequest fromSubmitFeedbackRequestDTO(SubmitFeedbackRequestDTO dto);

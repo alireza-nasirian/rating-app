@@ -26,7 +26,7 @@ public class FeedbackEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Date feedbackDate;
 
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
     @OneToOne
     private DeliveryEntity delivery;
 
