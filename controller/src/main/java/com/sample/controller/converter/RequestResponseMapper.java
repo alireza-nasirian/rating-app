@@ -1,5 +1,6 @@
 package com.sample.controller.converter;
 
+import com.sample.common.model.exception.ErrorCode;
 import com.sample.common.model.request.GetFeedbacksByBikerRequest;
 import com.sample.common.model.request.GetFeedbacksByDateRequest;
 import com.sample.common.model.request.GetFeedbacksByRateRequest;
@@ -7,6 +8,7 @@ import com.sample.common.model.request.SubmitFeedbackRequest;
 import com.sample.common.model.response.GetFeedbacksByBikerResponse;
 import com.sample.common.model.response.GetFeedbacksByDateResponse;
 import com.sample.common.model.response.GetFeedbacksByRateResponse;
+import com.sample.controller.dto.exception.ErrorCodeDTO;
 import com.sample.controller.dto.request.GetFeedbacksByBikerRequestDTO;
 import com.sample.controller.dto.request.GetFeedbacksByDateRequestDTO;
 import com.sample.controller.dto.request.GetFeedbacksByRateRequestDTO;
@@ -32,4 +34,6 @@ public interface RequestResponseMapper {
     GetFeedbacksByRateRequest fromGetFeedbacksByRateRequestDTO(GetFeedbacksByRateRequestDTO dto);
 
     GetFeedbacksByRateResponseDTO toGetFeedbacksByRateResponseDTO(GetFeedbacksByRateResponse response);
+
+    ErrorCodeDTO toErrorCodeDTO(ErrorCode errorCode);
 }
