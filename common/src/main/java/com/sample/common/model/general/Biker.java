@@ -8,4 +8,6 @@ import lombok.EqualsAndHashCode;
 public class Biker extends User {
 
     private String vehicleId;
+
+    private Double averageRate;
 }
