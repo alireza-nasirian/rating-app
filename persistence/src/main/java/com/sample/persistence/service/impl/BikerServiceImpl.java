@@ -37,7 +37,7 @@ public class BikerServiceImpl implements BikerService {
     }
 
     @Override
-    public Double getBikerRateById_withOutOutlayers(Long id) {
+    public Double getBikerRateById_withOutOutliers(Long id) {
         BikerEntity bikerEntity = bikerDAO.getReferenceById(id);
         List<FeedbackEntity> feedbacks = bikerEntity.getFeedbacks();
         double averageRate = 0;
