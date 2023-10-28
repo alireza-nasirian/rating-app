@@ -15,7 +15,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication(scanBasePackages = {"com.sample"})
 @EntityScan(basePackages = {"com.sample"})
 @EnableJpaRepositories(basePackages = {"com.sample"})
-public class RatingAppApplication implements CommandLineRunner {
+public class RatingAppApplication/* implements CommandLineRunner*/ {
 
     @Autowired
     private DeliveryDAO deliveryDAO;
@@ -28,9 +28,9 @@ public class RatingAppApplication implements CommandLineRunner {
         SpringApplication.run(RatingAppApplication.class, args);
     }
 
-    @Override
+/*    @Override
     public void run(String... args) throws Exception {
-        /*BikerEntity biker = new BikerEntity();
+        *//*BikerEntity biker = new BikerEntity();
         biker.setFirstName("another-random-first-name");
         biker.setLastName("another-random-last-name");
         biker.setPhoneNumber("09129876543");
@@ -44,10 +44,10 @@ public class RatingAppApplication implements CommandLineRunner {
         delivery.setSourceAddress("source");
         delivery.setBiker(biker);
         biker.setDeliveries(List.of(delivery));
-        deliveryDAO.save(delivery);*/
+        deliveryDAO.save(delivery);*//*
         FeedbackEntity entity = feedbackService.getFeedbackById(1L);
         System.out.println(entity.getDelivery().getId());
 
 
-    }
+    }*/
 }

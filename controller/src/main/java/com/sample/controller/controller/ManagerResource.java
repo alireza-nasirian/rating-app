@@ -54,7 +54,7 @@ public class ManagerResource {
     })
     @GetMapping(value = {"/feedback/get-by-rate"},
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public GetFeedbacksByRateResponseDTO getFeedbacksByRate(@RequestParam @NotNull @Min(0) @Max(5) Integer rate) {
+    public GetFeedbacksByRateResponseDTO getFeedbacksByRate(@RequestParam(name = "rate") @NotNull @Min(0) @Max(5) Integer rate) {
         return managerService.getFeedbacksByRate(rate);
     }
 }

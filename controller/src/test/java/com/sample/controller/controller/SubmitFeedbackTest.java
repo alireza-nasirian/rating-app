@@ -22,10 +22,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 public class SubmitFeedbackTest {
 
     @Autowired
-    public MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @Autowired
-    public ObjectMapper objectMapper;
+    private ObjectMapper objectMapper;
 
     @Test
     public void submitFeedback_emptyDeliveryId() throws Exception {
