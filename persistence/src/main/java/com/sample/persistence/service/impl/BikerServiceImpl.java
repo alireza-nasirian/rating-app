@@ -1,7 +1,5 @@
 package com.sample.persistence.service.impl;
 
-import com.sample.common.model.general.Biker;
-import com.sample.persistence.converter.PersistenceMapper;
 import com.sample.persistence.dao.BikerDAO;
 import com.sample.persistence.entity.BikerEntity;
 import com.sample.persistence.entity.FeedbackEntity;
@@ -17,8 +15,6 @@ import java.util.List;
 public class BikerServiceImpl implements BikerService {
 
     private final BikerDAO bikerDAO;
-    private final PersistenceMapper mapper;
-
     @Override
     public Double getBikerRateById_Top_Bottom(Long id) {
         BikerEntity bikerEntity = bikerDAO.getReferenceById(id);
