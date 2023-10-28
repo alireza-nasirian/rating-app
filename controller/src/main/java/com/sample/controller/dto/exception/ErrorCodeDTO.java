@@ -3,6 +3,7 @@ package com.sample.controller.dto.exception;
 public enum ErrorCodeDTO {
 
     BIKER_NOT_FOUND("no biker found with given ID"),
+    DELIVERY_NOT_FOUND("no delivery found with given ID"),
     INVALID_INPUT("invalid input"),
     INTERNAL_SERVER_ERROR("internal server error");
 
