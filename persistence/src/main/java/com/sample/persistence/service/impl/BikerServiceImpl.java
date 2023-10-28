@@ -20,11 +20,11 @@ public class BikerServiceImpl implements BikerService {
     private final PersistenceMapper mapper;
 
     @Override
-    public Biker getBikerById(Long id) {
+    public Double getBikerRateById_Top_Bottom(Long id) {
         BikerEntity bikerEntity = bikerDAO.getReferenceById(id);
         List<FeedbackEntity> feedbacks = bikerEntity.getFeedbacks();
         double averageRate = 0;
-        if (feedbacks.isEmpty()) {
+        if (!feedbacks.isEmpty()) {
             long top = bikerEntity.getFeedbacks().stream()
                     .filter(a -> a.getRate() == RateEntity.FIVE_STAR || a.getRate() == RateEntity.FOUR_STAR).count();
             long bottom = bikerEntity.getFeedbacks().stream()
@@ -33,8 +33,26 @@ public class BikerServiceImpl implements BikerService {
 
             averageRate = (double) ((top/bottom) * 5);
         }
-        Biker biker = mapper.fromBikerEntity(bikerEntity);
-        biker.setAverageRate(averageRate);
-        return biker;
+        return averageRate;
     }
+
+    @Override
+    public Double getBikerRateById_withOutOutlayers(Long id) {
+        BikerEntity bikerEntity = bikerDAO.getReferenceById(id);
+        List<FeedbackEntity> feedbacks = bikerEntity.getFeedbacks();
+        double averageRate = 0;
+        if (!feedbacks.isEmpty()) {
+            double average = feedbacks.stream().mapToInt(a -> a.getRate().getValue()).average().orElse(0.0);
+            double sumSquaredDiff = feedbacks.stream().mapToDouble(a -> Math.pow(a.getRate().getValue() - average, 2)).sum();
+            double stdDev = Math.sqrt(sumSquaredDiff/feedbacks.size());
+            List<Integer> filteredRatings = feedbacks.stream().mapToInt(a -> a.getRate().getValue()).filter(a -> (Math.abs(a - average) <= 2*stdDev)).boxed().toList();
+            if (filteredRatings.isEmpty()) {
+                return 0.0;
+            }
+            averageRate = filteredRatings.stream().mapToInt(a -> a).average().orElse(0.0);
+        }
+        return averageRate;
+    }
+
+
 }

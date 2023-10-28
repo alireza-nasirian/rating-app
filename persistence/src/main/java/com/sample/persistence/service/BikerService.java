@@ -1,8 +1,7 @@
 package com.sample.persistence.service;
 
-import com.sample.common.model.general.Biker;
-
 public interface BikerService {
 
-    Biker getBikerById(Long id);
+    Double getBikerRateById_Top_Bottom (Long id);
+    Double getBikerRateById_withOutOutlayers (Long id);
 }
