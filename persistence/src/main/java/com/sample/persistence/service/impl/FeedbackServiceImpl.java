@@ -36,7 +36,6 @@ public class FeedbackServiceImpl implements FeedbackService {
             FeedbackEntity entity = mapper.toFeedbackEntity(feedback);
             entity.setDelivery(delivery);
             entity.setFeedbackDate(new Date());
-            entity.setBiker(delivery.getBiker());
             delivery.setFeedback(entity);
             FeedbackEntity savedEntity = feedbackDAO.save(entity);
             return savedEntity.getId();

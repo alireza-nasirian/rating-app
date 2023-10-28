@@ -1,6 +1,5 @@
 package com.sample.core.util;
 
-import com.sample.persistence.service.impl.BikerServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

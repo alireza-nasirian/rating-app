@@ -3,7 +3,9 @@ package com.sample.controller.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sample.controller.dto.ResponseBuilder;
 import com.sample.controller.dto.response.GetFeedbacksByBikerResponseDTO;
+import com.sample.persistence.dao.BikerDAO;
 import com.sample.persistence.dao.FeedbackDAO;
+import com.sample.persistence.entity.BikerEntity;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
@@ -30,13 +33,18 @@ public class GetFeedbackByBikerTest {
     @MockBean
     private FeedbackDAO feedbackDAO;
 
+    @MockBean
+    private BikerDAO bikerDAO;
+
     @Test
+    @WithMockUser
     public void getFeedbackByBiker_happyPath() throws Exception {
 
         //given
         GetFeedbacksByBikerResponseDTO response = ResponseBuilder.getGetFeedbacksByBikerResponseDTO();
 
         //when
+        Mockito.when(bikerDAO.getReferenceById(Mockito.any())).thenReturn(new BikerEntity());
         Mockito.when(feedbackDAO.findFeedbackEntitiesByBiker_Id(Mockito.any()))
                 .thenReturn(ResponseBuilder.getFeedbackEntityList());
 

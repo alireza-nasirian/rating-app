@@ -3,14 +3,13 @@ package com.sample.persistence.converter;
 import com.sample.common.model.enumeration.Rate;
 import com.sample.common.model.general.Biker;
 import com.sample.common.model.general.Delivery;
+import com.sample.common.model.general.User;
 import com.sample.common.model.request.Feedback;
-import com.sample.persistence.entity.BikerEntity;
-import com.sample.persistence.entity.DeliveryEntity;
-import com.sample.persistence.entity.FeedbackEntity;
-import com.sample.persistence.entity.RateEntity;
+import com.sample.persistence.entity.*;
 import org.mapstruct.Mapper;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper(componentModel = "spring")
 public interface PersistenceMapper {
@@ -26,4 +25,8 @@ public interface PersistenceMapper {
     Biker fromBikerEntity(BikerEntity entity);
 
     com.sample.common.model.response.Feedback fromFeedbackEntity(FeedbackEntity referenceById);
+
+    User fromUserEntityToUser(UserEntity userEntitiesByUsername);
+
+    UserEntity fromUserToUserEntity(User user);
 }

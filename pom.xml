@@ -41,11 +41,11 @@
 				<optional>true</optional>
                 <version>${lombok.version}</version>
 			</dependency>
-			<dependency>
+			<!--<dependency>
 				<groupId>org.springframework.security</groupId>
 				<artifactId>spring-security-test</artifactId>
 				<scope>test</scope>
-			</dependency>
+			</dependency>-->
             <dependency>
                 <groupId>io.swagger.core.v3</groupId>
                 <artifactId>swagger-annotations</artifactId>

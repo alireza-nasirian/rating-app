@@ -1,12 +1,12 @@
 package com.sample.persistence.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -14,10 +14,9 @@ import java.util.List;
 @Setter
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class UserEntity {
-
     @Id
     @SequenceGenerator(name = "user_seq",
-            sequenceName = "user_sequence",allocationSize = 20)
+            sequenceName = "user_sequence", allocationSize = 20)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
     @Column(nullable = false)
     private Long id;
@@ -33,4 +32,11 @@ public class UserEntity {
 
     @Column(length = 11, nullable = false)
     private String phoneNumber;
+
+    private String username;
+
+    private String password;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<RoleEntity> roles = new HashSet<>();
 }

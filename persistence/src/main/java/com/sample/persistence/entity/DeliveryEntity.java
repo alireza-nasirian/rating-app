@@ -30,9 +30,9 @@ public class DeliveryEntity {
     @Lob
     private String destinationAddress;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne
     @NotNull
-    private BikerEntity biker;
+    private UserEntity user;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private FeedbackEntity feedback;
