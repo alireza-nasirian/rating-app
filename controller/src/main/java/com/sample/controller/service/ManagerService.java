@@ -1,5 +1,6 @@
 package com.sample.controller.service;
 
+import com.sample.common.model.enumeration.Rate;
 import com.sample.common.model.request.GetFeedbacksByBikerRequest;
 import com.sample.common.model.response.Feedback;
 import com.sample.common.model.response.GetFeedbacksByBikerResponse;
@@ -7,7 +8,6 @@ import com.sample.common.model.response.GetFeedbacksByDateResponse;
 import com.sample.common.model.response.GetFeedbacksByRateResponse;
 import com.sample.controller.converter.RequestResponseMapper;
 import com.sample.controller.dto.request.GetFeedbacksByDateRequestDTO;
-import com.sample.controller.dto.request.GetFeedbacksByRateRequestDTO;
 import com.sample.controller.dto.response.GetFeedbacksByBikerResponseDTO;
 import com.sample.controller.dto.response.GetFeedbacksByDateResponseDTO;
 import com.sample.controller.dto.response.GetFeedbacksByRateResponseDTO;
@@ -38,9 +38,9 @@ public class ManagerService {
         return mapper.toGetFeedbacksByBikerResponseDTO(response);
     }
 
-    public GetFeedbacksByRateResponseDTO getFeedbacksByRate(GetFeedbacksByRateRequestDTO request) {
+    public GetFeedbacksByRateResponseDTO getFeedbacksByRate(Integer rate) {
         GetFeedbacksByRateResponse response = new GetFeedbacksByRateResponse();
-        List<Feedback> feedbacks = feedbackCore.getFeedbacksByRate(mapper.fromGetFeedbacksByRateRequestDTO(request));
+        List<Feedback> feedbacks = feedbackCore.getFeedbacksByRate(Rate.getByValue(rate));
         response.setFeedbacks(feedbacks);
         return mapper.toGetFeedbacksByRateResponseDTO(response);
     }

@@ -1,7 +1,6 @@
 package com.sample.controller.controller;
 
 import com.sample.controller.dto.request.GetFeedbacksByDateRequestDTO;
-import com.sample.controller.dto.request.GetFeedbacksByRateRequestDTO;
 import com.sample.controller.dto.response.GetFeedbacksByBikerResponseDTO;
 import com.sample.controller.dto.response.GetFeedbacksByDateResponseDTO;
 import com.sample.controller.dto.response.GetFeedbacksByRateResponseDTO;
@@ -11,7 +10,10 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -50,10 +52,9 @@ public class ManagerResource {
             @ApiResponse(responseCode = "200", description = "OK", content =
             @Content(schema = @Schema(implementation = GetFeedbacksByRateResponseDTO.class)))
     })
-    @PostMapping(value = {"/feedback/get-by-rate"},
-            consumes = MediaType.APPLICATION_JSON_VALUE,
+    @GetMapping(value = {"/feedback/get-by-rate"},
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public GetFeedbacksByRateResponseDTO getFeedbacksByRate(@Valid @RequestBody GetFeedbacksByRateRequestDTO request) {
-        return managerService.getFeedbacksByRate(request);
+    public GetFeedbacksByRateResponseDTO getFeedbacksByRate(@RequestParam @NotNull @Min(0) @Max(5) Integer rate) {
+        return managerService.getFeedbacksByRate(rate);
     }
 }
